@@ -91,9 +91,11 @@ public class Login {
 				
 				if( !(usernameInput.equals("admin") &&  myPass.equals("admin")) )
 					JOptionPane.showMessageDialog(frame, "Invalid username or password");
-				
-				//CreateProject project = new CreateProject();
-				//project.setVisible(true);
+				else
+				{
+					MainScreen mainScreen = new MainScreen();
+					mainScreen.setVisible(true);
+				}
 					
 					
 			}
