@@ -5,9 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.util.JDatePickerUtil;
-
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -21,18 +18,20 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import com.toedter.calendar.JDateChooser;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TaskView extends JFrame {
 	private JTextField nameField;
 	private JTextField descriptionField;
-	private JTextField dueDate;
 
 	/**
 	 * Create the frame.
 	 */
 	public TaskView() {
 		
-		setBounds(300, 300, 450, 300);
+		setBounds(50, 50, 500, 600);
 		
 		JLabel lblTaskView = new JLabel("Task View");
 		
@@ -52,78 +51,91 @@ public class TaskView extends JFrame {
 		
 		JLabel lblDueDate = new JLabel("Due Date");
 		
-		dueDate = new JTextField();
-		dueDate.setColumns(10);
-		
 		JButton btnNewButton = new JButton("Create");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		
-		JDatePickerImpl t = new JDatePickerImpl(null, null);
+		JButton cancelButton = new JButton("Cancel");
+		cancelButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+		});
 		
-		JButton btnNewButton_1 = new JButton("Cancel");
+		JDateChooser dateChooser = new JDateChooser();
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(188)
-							.addComponent(lblTaskView))
+							.addComponent(btnNewButton)
+							.addGap(18)
+							.addComponent(cancelButton)
+							.addGap(48))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblStatus)
-								.addComponent(lblName)
-								.addComponent(lblDescription)
-								.addComponent(lblDueDate))
-							.addGap(29)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(comboBox, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addGap(253))
-								.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-									.addComponent(descriptionField, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
-									.addComponent(nameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-								.addComponent(dueDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-					.addGap(44))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(277, Short.MAX_VALUE)
-					.addComponent(btnNewButton)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnNewButton_1)
-					.addGap(6))
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblStatus)
+										.addComponent(lblDueDate))
+									.addGap(40)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(dateChooser, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+										.addComponent(comboBox, 0, 362, Short.MAX_VALUE)))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lblDescription)
+										.addComponent(lblName))
+									.addGap(29)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(nameField)
+										.addComponent(descriptionField, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))))
+							.addGap(57))))
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(228)
+					.addComponent(lblTaskView)
+					.addContainerGap(236, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblTaskView)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(nameField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblName))
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(descriptionField, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblDescription))
-							.addGap(13)
-							.addComponent(lblStatus)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblDueDate))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(149)
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(dueDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+					.addContainerGap()
+					.addComponent(lblTaskView)
+					.addGap(30)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton_1)
-						.addComponent(btnNewButton))
+						.addComponent(lblName)
+						.addComponent(nameField, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+					.addGap(53)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblDescription)
+						.addComponent(descriptionField, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
+					.addGap(43)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblStatus)
+						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(40)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblDueDate)
+						.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnNewButton)
+						.addComponent(cancelButton))
 					.addContainerGap())
 		);
 		getContentPane().setLayout(groupLayout);
