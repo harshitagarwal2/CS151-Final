@@ -35,6 +35,12 @@ class TaskBoard extends JFrame{
 		panel.add(projectSelector);
 		
 		JButton btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ProjectView editView = new ProjectView();
+				editView.setVisible(true);
+			}
+		});
 		panel.add(btnEdit);
 		
 		JButton btnDelete = new JButton("Delete");
