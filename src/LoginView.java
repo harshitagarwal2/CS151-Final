@@ -73,8 +73,9 @@ public class LoginView extends JFrame {
 					}
 					else
 					{
-						ProjectView mainScreen = new ProjectView();
+						TaskBoard mainScreen = new TaskBoard();
 						mainScreen.setVisible(true);
+						setVisible(false);
 					}
 			
 			}

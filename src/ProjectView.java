@@ -14,6 +14,8 @@ import java.awt.SystemColor;
 import java.util.ArrayList;
 
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ProjectView extends JFrame {
 
@@ -23,6 +25,7 @@ public class ProjectView extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private ArrayList<String> Projects; 
+	private int columnsize;
 	
 	/**
 	 * Launch the application.
@@ -106,6 +109,16 @@ public class ProjectView extends JFrame {
 		panel.add(textField);
 		
 		JButton button_2 = new JButton("+");
+		button_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				columnsize++;
+				String FieldName = "FieldName " + Integer.toString(columnsize);
+				for(int i=0 ; i<columnsize; i++) {
+					new JTextField();	
+				}
+
+			}
+		});
 		button_2.setBounds(121, 120, 53, 23);
 		panel.add(button_2);
 		
@@ -125,10 +138,20 @@ public class ProjectView extends JFrame {
 		panel.add(textField_3);
 		
 		JButton btnCreate = new JButton("Create");
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
 		btnCreate.setBounds(466, 297, 89, 23);
 		panel.add(btnCreate);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
 		btnCancel.setBounds(572, 297, 89, 23);
 		panel.add(btnCancel);
 	}
