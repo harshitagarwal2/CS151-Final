@@ -19,12 +19,16 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.demo.DateChooserPanel;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class TaskView extends JFrame {
 	private JTextField nameField;
 	private JTextField descriptionField;
+	private ArrayList<String> [] Tasklist;
 
 	/**
 	 * Create the frame.
@@ -63,19 +67,14 @@ public class TaskView extends JFrame {
 		});
 		
 		JButton cancelButton = new JButton("Cancel");
-		cancelButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			}
-		});
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				setVisible(false);
 			}
 		});
 		
 		JDateChooser dateChooser = new JDateChooser();
+
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -144,6 +143,25 @@ public class TaskView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
+	
+	public String getName() {
+		return nameField.getText();
+	}
+	
+	public void setName(String name) {
+		nameField.setText(name);
+	}
+	
+	public String getDescription() {
+		return descriptionField.getText();
+	}
+	
+	public void setDescription(String name) {
+		descriptionField.setText(name);
+	}
+	
+	
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

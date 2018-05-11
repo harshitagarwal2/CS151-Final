@@ -46,12 +46,20 @@ class TaskBoard extends JFrame{
 		JButton btnCreateNew = new JButton("Create New");
 		btnCreateNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CreateProject cp = new CreateProject();
+				ProjectView view = new ProjectView();
+				view.setVisible(true);
 			}
 		});
 		panel.add(btnCreateNew);
 		
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoginView loginView = new LoginView();
+				loginView.setVisible(true);
+				setVisible(false);
+			}
+		});
 		panel.add(btnLogout);
 		
 		JPanel columnPanel = new JPanel();
@@ -90,6 +98,8 @@ class TaskBoard extends JFrame{
 			JButton jb = new JButton("+");
 			jb.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent ae ) {
+					TaskView Task = new TaskView();
+					Task.setVisible(true);
 					columnPanels[j].add(new JLabel("new task"));
 					columnPanel.revalidate();
 					columnPanel.repaint();
@@ -100,11 +110,7 @@ class TaskBoard extends JFrame{
 		int j = 0;
 		for (int i = 0; i < 4*colsize; i++) {
 			JLabel jb = new JLabel("Task " + i);
-			jb.setBorder(BorderFactory.createMatteBorder(0, 
-                                                                2, 
-                                                                0, 
-                                                                2, 
-                                                                Color.BLACK));
+			jb.setBorder(BorderFactory.createMatteBorder(0,2,0,2,Color.BLACK));
 
 			columnPanels[j].add(jb);
 			j = (j+1) % colsize;

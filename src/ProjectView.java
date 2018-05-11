@@ -11,16 +11,19 @@ import javax.swing.JButton;
 import javax.swing.JSeparator;
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.util.ArrayList;
+
 import javax.swing.JTextField;
 
-public class MainScreen extends JFrame {
+public class ProjectView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-
+	private ArrayList<String> Projects; 
+	
 	/**
 	 * Launch the application.
 	 */
@@ -28,7 +31,7 @@ public class MainScreen extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainScreen frame = new MainScreen();
+					ProjectView frame = new ProjectView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +43,7 @@ public class MainScreen extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainScreen() {
+	public ProjectView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 500);
 		contentPane = new JPanel();
