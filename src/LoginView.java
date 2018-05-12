@@ -75,7 +75,26 @@ public class LoginView extends JFrame {
 					{
 						TaskBoard mainScreen = new TaskBoard();
 						mainScreen.setVisible(true);
-						setVisible(false);
+						setVisible(false)
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						;
 					}
 			
 			}

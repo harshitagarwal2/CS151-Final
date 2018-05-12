@@ -29,6 +29,7 @@ public class TaskView extends JFrame {
 	private JTextField nameField;
 	private JTextField descriptionField;
 	private ArrayList<String> [] Tasklist;
+	private JTextField textField;
 
 	/**
 	 * Create the frame.
@@ -73,11 +74,12 @@ public class TaskView extends JFrame {
 			}
 		});
 		
-		JDateChooser dateChooser = new JDateChooser();
+		textField = new JTextField();
+		textField.setColumns(10);
 
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -94,7 +96,7 @@ public class TaskView extends JFrame {
 										.addComponent(lblDueDate))
 									.addGap(40)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(dateChooser, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+										.addComponent(textField, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
 										.addComponent(comboBox, 0, 362, Short.MAX_VALUE)))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
@@ -105,7 +107,7 @@ public class TaskView extends JFrame {
 										.addComponent(nameField)
 										.addComponent(descriptionField, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))))
 							.addGap(57))))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(228)
 					.addComponent(lblTaskView)
 					.addContainerGap(236, Short.MAX_VALUE))
@@ -127,10 +129,10 @@ public class TaskView extends JFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblStatus)
 						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(40)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+					.addGap(46)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDueDate)
-						.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
