@@ -1,75 +1,136 @@
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Frame;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.Label;
-import java.awt.Panel;
-import java.awt.Choice;
-import java.awt.Button;
-import java.awt.GridLayout;
+import javax.swing.TransferHandler;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.GridLayout;
 
-public class TaskBoard extends JFrame {
-
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TaskBoard frame = new TaskBoard();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+class TaskBoard extends JFrame{
+    private javax.swing.JComboBox<String> projectSelectorBox;
+    private int colsize= 4;
+	private JPanel[] columnPanels;
+	private String columns [] = {"Todo", "Abc", "java" , "qwrt"}  ;
+	ProjectModel testModel = new ProjectModel();
+	
+	public TaskBoard() {
+		getContentPane().setLayout(new BorderLayout());
+		
+		JPanel panel = new JPanel();
+		getContentPane().add(panel, BorderLayout.NORTH);
+		
+		JLabel projectName = new JLabel("Project Name");
+		panel.add(projectName);
+		
+		JComboBox<String> projectSelector = new JComboBox<String>();
+		projectSelector.addItem("Item1 ");
+		panel.add(projectSelector);
+		
+		JButton btnEdit = new JButton("Edit");
+		btnEdit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ProjectView editView = new ProjectView();
+				editView.setVisible(true);
 			}
 		});
-	}
+		panel.add(btnEdit);
+		
+		JButton btnDelete = new JButton("Delete");
+		panel.add(btnDelete);
+		
+		JButton btnLoad = new JButton("Load");
+		panel.add(btnLoad);
+		
+		JButton btnCreateNew = new JButton("Create New");
+		btnCreateNew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ProjectView view = new ProjectView();
+				view.setVisible(true);
+			}
+		});
+		panel.add(btnCreateNew);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LoginView loginView = new LoginView();
+				loginView.setVisible(true);
+				setVisible(false);
+			}
+		});
+		panel.add(btnLogout);
+		
+		JPanel columnPanel = new JPanel();
+		getContentPane().add(columnPanel, BorderLayout.CENTER);
+		columnPanel.setLayout(new GridLayout(1, 0, 0, 0));
+		columnPanels = new JPanel[colsize];
 
-	/**
-	 * Create the frame.
-	 */
-	public TaskBoard() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(400, 400, 950, 600);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		
-		Panel panel = new Panel();
-		contentPane.add(panel);
-		
-		Label label = new Label("Select Project");
-		panel.add(label);
-		
-		Choice choice = new Choice();
-		panel.add(choice);
-		
-		Button edit_button = new Button("Edit");
-		panel.add(edit_button);
-		
-		Button save_button = new Button("Save");
-		panel.add(save_button);
-		
-		Button delete_button = new Button("Delete");
-		panel.add(delete_button);
-		
-		Button load_button = new Button("Load");
-		panel.add(load_button);
-		
-		Button create_button = new Button("Create New");
-		panel.add(create_button);
-		
-		Button logout_button = new Button("Logout");
-		panel.add(logout_button);
-		
-		
+		for (int i = 0; i < colsize; i++) {
+			columnPanels[i] = new JPanel();
+			columnPanels[i].setLayout(new BoxLayout(columnPanels[i], BoxLayout.PAGE_AXIS));
+			columnPanel.add(columnPanels[i]);
+		}
+		// Add the column Name
+		for (int i = 0; i < colsize; i++) {
+			JLabel label = new JLabel(columns[i]);
+			label.setBorder(BorderFactory.createMatteBorder(2, 
+                                                                2, 
+                                                                2, 
+                                                                2, 
+                                                                Color.BLACK));
+			label.setTransferHandler(new TransferHandler("text"));
+
+		    /*label.addMouseListener(new MouseAdapter() {
+		      public void mousePressed(MouseEvent evt) {
+		        JComponent comp = (JComponent) evt.getSource();
+		        TransferHandler th = comp.getTransferHandler();
+		        th.exportAsDrag(comp, evt, TransferHandler.COPY);
+		      }
+		    });*/
+			columnPanels[i].add(label);
+			
+		}
+		for (int i = 0; i < colsize; i++) {
+			final int j = i;
+			JButton jb = new JButton("+");
+			jb.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent ae ) {
+					TaskView Task = new TaskView();
+					Task.setVisible(true);
+					columnPanels[j].add(new JLabel("new task"));
+					columnPanel.revalidate();
+					columnPanel.repaint();
+				}
+			});
+			columnPanels[i].add(jb);
+		}
+		int j = 0;
+		for (int i = 0; i < 4*colsize; i++) {
+			JLabel jb = new JLabel("Task " + i);
+			jb.setBorder(BorderFactory.createMatteBorder(0,2,0,2,Color.BLACK));
+
+			columnPanels[j].add(jb);
+			j = (j+1) % colsize;
+		}
+
+
+		this.pack();
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	}
-
+	
+	public static void main(String[] args) {
+		TaskBoard b = new TaskBoard();
+	}
+	
 }
