@@ -18,13 +18,13 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ProjectView extends JFrame {
-
+public class ProjectView extends JFrame implements ActionListener{
 	private JPanel contentPane;
 	private JTextField textField;
 	private ArrayList<String> Projects; 
-	private int columnsize;
-	private JPanel listing;
+	private int columnsize=0;
+	JPanel panel_1;
+	private JTextField [] column; 
 	
 	/**
 	 * Launch the application.
@@ -63,9 +63,9 @@ public class ProjectView extends JFrame {
 		contentPane.add(nameLabel);
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		JButton button_2 = new JButton("+");
-		button_2.setBounds(214, 136, 53, 23);
-		contentPane.add(button_2);
+		JButton addcolumnbutton = new JButton("+");
+		addcolumnbutton.setBounds(214, 136, 53, 23);
+		contentPane.add(addcolumnbutton);
 		
 		textField = new JTextField();
 		textField.setBounds(215, 86, 244, 20);
@@ -84,11 +84,11 @@ public class ProjectView extends JFrame {
 		lblAddColumns.setBounds(101, 140, 56, 16);
 		contentPane.add(lblAddColumns);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(36, 178, 821, 156);
-        listing = new JPanel();
-        listing.setLayout(new BoxLayout(listing, BoxLayout.Y_AXIS));
-		contentPane.add(listing);
+		panel_1 = new JPanel();
+		panel_1.setBounds(101, 181, 769, 160);
+		contentPane.add(panel_1);
+		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.Y_AXIS));
+		
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -99,15 +99,32 @@ public class ProjectView extends JFrame {
 				setVisible(false);
 			}
 		});
-		button_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				columnsize++;
-				String FieldName = "FieldName " + Integer.toString(columnsize);
-				for(int i=0 ; i<columnsize; i++) {
-					new JTextField();	
-				}
-
-			}
-		});
+		addcolumnbutton.addActionListener(this);
 	}
+
+
+	    
+	class FieldButtonPair extends JPanel {
+	    JTextField field;
+	    JButton removebutton;
+
+	    FieldButtonPair() {
+	        super(new BorderLayout());
+	        field = new JTextField();
+	        add(field, BorderLayout.CENTER);
+	        removebutton = new JButton("Remove");
+	        add(removebutton, BorderLayout.EAST);
+	    }
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		column = new JTextField[10];
+		column[columnsize] = new JTextField();
+        this.panel_1.add(column[columnsize]);
+        this.panel_1.revalidate();
+        validate();
+        columnsize++;		
+	} 
+	    
 }
