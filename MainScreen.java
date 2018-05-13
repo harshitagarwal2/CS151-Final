@@ -12,18 +12,26 @@ import javax.swing.JSeparator;
 import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class MainScreen extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	public static JTextField projectName;
+	public static JTextField textField_1;
+	public static JTextField textField_2;
+	public static JTextField textField_3;
+	public static JTextField textField_4;
+	public static int columnCount = 0;
+	public static String[] colNames = new String[10];
 
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -36,7 +44,11 @@ public class MainScreen extends JFrame {
 			}
 		});
 	}
-
+	
+	public String getProjectName()
+	{
+		return this.projectName.getText();
+	}
 	/**
 	 * Create the frame.
 	 */
@@ -57,12 +69,15 @@ public class MainScreen extends JFrame {
 		comboBox.setBounds(135, 32, 180, 20);
 		contentPane.add(comboBox);
 		
-		JButton button = new JButton("Create New");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		button.setBounds(599, 29, 113, 23);
-		contentPane.add(button);
-		
 		JButton button_1 = new JButton("Logout");
+		button_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				LoginView login = new LoginView();
+				dispose();
+				login.setVisible(true);
+			}
+		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		button_1.setBounds(737, 28, 107, 24);
 		contentPane.add(button_1);
@@ -97,36 +112,88 @@ public class MainScreen extends JFrame {
 		label_3.setBounds(32, 86, 46, 14);
 		panel.add(label_3);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(121, 86, 244, 20);
-		panel.add(textField);
-		
-		JButton button_2 = new JButton("+");
-		button_2.setBounds(121, 120, 53, 23);
-		panel.add(button_2);
+		projectName = new JTextField();
+		projectName.setColumns(10);
+		projectName.setBounds(121, 86, 244, 20);
+		panel.add(projectName);
 		
 		textField_1 = new JTextField();
+		textField_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				columnCount++;
+			}
+		});
 		textField_1.setColumns(10);
 		textField_1.setBounds(32, 161, 181, 20);
 		panel.add(textField_1);
 		
+		
 		textField_2 = new JTextField();
+		textField_2.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				columnCount++;
+			}
+		});
 		textField_2.setColumns(10);
 		textField_2.setBounds(32, 205, 181, 20);
 		panel.add(textField_2);
 		
+		
 		textField_3 = new JTextField();
+		textField_3.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				columnCount++;
+			}
+		});
 		textField_3.setColumns(10);
 		textField_3.setBounds(31, 247, 182, 20);
 		panel.add(textField_3);
 		
+		
 		JButton btnCreate = new JButton("Create");
+		btnCreate.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				colNames[0] = textField_1.getText();
+				colNames[1] = textField_2.getText();
+				colNames[2] = textField_3.getText();
+				colNames[3] = textField_4.getText();
+				for(int i =0; i < 4; i++)
+					System.out.println(colNames[i]);
+				System.out.println(columnCount);
+				TaskBoard mainScreen = new TaskBoard();
+				dispose();
+				mainScreen.setVisible(true);
+			}
+		});
 		btnCreate.setBounds(466, 297, 89, 23);
 		panel.add(btnCreate);
 		
 		JButton btnCancel = new JButton("Cancel");
+		btnCancel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//dispose();
+				TaskBoard taskboard = new TaskBoard();
+				taskboard.setVisible(true);
+			}
+		});
 		btnCancel.setBounds(572, 297, 89, 23);
 		panel.add(btnCancel);
+		
+		textField_4 = new JTextField();
+		textField_4.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				columnCount++;
+			}
+		});
+		textField_4.setColumns(10);
+		textField_4.setBounds(31, 284, 182, 20);
+		panel.add(textField_4);
+
 	}
 }
