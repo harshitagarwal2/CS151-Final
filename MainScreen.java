@@ -26,7 +26,11 @@ public class MainScreen extends JFrame {
 	public static JTextField textField_3;
 	public static JTextField textField_4;
 	public static int columnCount = 0;
-	public static String[] colNames = new String[10];
+	public static String[] colNames = new String[4];
+	public static String[] des = new String[4];
+	public static String[] dates = new String[4];
+	public static boolean cancel = true;
+	
 
 	/**
 	 * Launch the application.
@@ -161,10 +165,11 @@ public class MainScreen extends JFrame {
 				colNames[1] = textField_2.getText();
 				colNames[2] = textField_3.getText();
 				colNames[3] = textField_4.getText();
-				for(int i =0; i < 4; i++)
-					System.out.println(colNames[i]);
-				System.out.println(columnCount);
-				TaskBoard mainScreen = new TaskBoard();
+				
+				cancel = false;
+				TaskBoardV2.noProj = false;
+				
+				TaskBoardV2 mainScreen = new TaskBoardV2();
 				dispose();
 				mainScreen.setVisible(true);
 			}
@@ -177,7 +182,8 @@ public class MainScreen extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				//dispose();
-				TaskBoard taskboard = new TaskBoard();
+				cancel = true;
+				TaskBoardV2 taskboard = new TaskBoardV2();
 				taskboard.setVisible(true);
 			}
 		});

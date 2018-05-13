@@ -53,16 +53,48 @@ public class TaskView extends JFrame {
 		descriptionField = new JTextField();
 		descriptionField.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		
-		JLabel lblStatus = new JLabel("Status");
-		
 		JLabel lblDueDate = new JLabel("Due Date");
+		
+		textField = new JTextField();
+		textField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Create");
 	
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				String newName = nameField.getText();
+				String newDes = descriptionField.getText();
+				String newDate = textField.getText();
+				if(TaskBoardV2.editChoice == 1)
+				{
+					MainScreen.colNames[0] = newName;
+					MainScreen.des[0] = newDes;
+					MainScreen.dates[0] = newDate; 
+				}
+				if(TaskBoardV2.editChoice == 2)
+				{
+					MainScreen.colNames[1] = newName;	
+					MainScreen.des[1] = newDes;
+					MainScreen.dates[1] = newDate; 
+				}
+				if(TaskBoardV2.editChoice == 3)
+				{
+					MainScreen.colNames[2] = newName;	
+					MainScreen.des[2] = newDes;
+					MainScreen.dates[2] = newDate; 
+				}
+				if(TaskBoardV2.editChoice == 4)
+				{
+					MainScreen.colNames[3] = newName;
+					MainScreen.des[3] = newDes;
+					MainScreen.dates[3] = newDate; 
+				}
+			
+				dispose();
+				TaskBoardV2 taskView = new TaskBoardV2();
+				taskView.setVisible(true);
+//				dispose();
+				
 				
 			}
 		});
@@ -74,8 +106,8 @@ public class TaskView extends JFrame {
 			}
 		});
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+//		textField = new JTextField();
+//		textField.setColumns(10);
 
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
@@ -91,13 +123,9 @@ public class TaskView extends JFrame {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblStatus)
-										.addComponent(lblDueDate))
+									.addComponent(lblDueDate)
 									.addGap(40)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(textField, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
-										.addComponent(comboBox, 0, 362, Short.MAX_VALUE)))
+									.addComponent(textField, GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblDescription)
@@ -125,15 +153,11 @@ public class TaskView extends JFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblDescription)
 						.addComponent(descriptionField, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
-					.addGap(43)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblStatus)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(46)
+					.addGap(109)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblDueDate)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
 						.addComponent(cancelButton))
