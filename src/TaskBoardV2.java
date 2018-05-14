@@ -6,6 +6,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,6 +25,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 import java.awt.event.ActionListener;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.InputMethodListener;
 import java.awt.event.ActionEvent;
 
 public class TaskBoardV2 extends JFrame {
@@ -173,15 +177,75 @@ public class TaskBoardV2 extends JFrame {
 			textField.setBounds(10, 205, 196, 20);
 			contentPane.add(textField);
 			
+			textField.getDocument().addDocumentListener(new DocumentListener() {
+				
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					MainScreen.colNames[0] = textField.getText();
+				}
+				
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					MainScreen.colNames[0] = textField.getText();
+				}
+				
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					MainScreen.colNames[0] = textField.getText();
+				}
+			});
+
+			
 			textField_4 = new JTextField(MainScreen.des[0]);
 			textField_4.setBounds(10, 278, 196, 172);
 			contentPane.add(textField_4);
 			textField_4.setColumns(10);
 			
+			textField_4.getDocument().addDocumentListener(new DocumentListener() {
+				
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					MainScreen.des[0] = textField_4.getText();					
+				}
+				
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					MainScreen.des[0] = textField_4.getText();
+					
+				}
+				
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					MainScreen.des[0] = textField_4.getText();
+					
+				}
+			});
+			
 			textField_8 = new JTextField(MainScreen.dates[0]);
 			textField_8.setBounds(78, 165, 128, 20);
 			contentPane.add(textField_8);
 			textField_8.setColumns(10);
+			
+			textField_8.getDocument().addDocumentListener(new DocumentListener() {
+				
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					MainScreen.dates[0] = textField_8.getText();
+					
+				}
+				
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					MainScreen.dates[0] = textField_8.getText();
+					
+				}
+				
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					MainScreen.dates[0] = textField_8.getText();
+					
+				}
+			});
 		}
 		
 		JButton button_5 = new JButton("Edit");
@@ -392,16 +456,79 @@ public class TaskBoardV2 extends JFrame {
 			textField_1.setColumns(10);
 			textField_1.setBounds(230, 205, 196, 20);
 			contentPane.add(textField_1);
+			
+			textField_1.getDocument().addDocumentListener(new DocumentListener() {
+				
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					MainScreen.colNames[1] = textField_1.getText();
+					
+				}
+				
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					MainScreen.colNames[1] = textField_1.getText();
+					
+				}
+				
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					MainScreen.colNames[1] = textField_1.getText();
+					
+				}
+			});
 
 			textField_5 = new JTextField(MainScreen.des[1]);
 			textField_5.setColumns(10);
 			textField_5.setBounds(230, 278, 196, 172);
 			contentPane.add(textField_5);
 			
+			textField_5.getDocument().addDocumentListener(new DocumentListener() {
+				
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					MainScreen.des[1] = textField_5.getText();
+					
+				}
+				
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					MainScreen.des[1] = textField_5.getText();
+					
+				}
+				
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					MainScreen.des[1] = textField_5.getText();
+					
+				}
+			});
+			
 			textField_9 = new JTextField(MainScreen.dates[1]);
 			textField_9.setColumns(10);
 			textField_9.setBounds(289, 165, 128, 20);
 			contentPane.add(textField_9);
+			
+			textField_9.getDocument().addDocumentListener(new DocumentListener() {
+				
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					MainScreen.dates[1] = textField_9.getText();
+					
+				}
+				
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					MainScreen.dates[1] = textField_9.getText();
+					
+				}
+				
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					MainScreen.dates[1] = textField_9.getText();
+					
+				}
+			});
 		}
 		
 		if (MainScreen.columnCount >= 3) {
@@ -409,16 +536,79 @@ public class TaskBoardV2 extends JFrame {
 			textField_2.setColumns(10);
 			textField_2.setBounds(469, 205, 196, 20);
 			contentPane.add(textField_2);
+			
+			textField_2.getDocument().addDocumentListener(new DocumentListener() {
+				
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					MainScreen.colNames[2] = textField_2.getText();
+					
+				}
+				
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					MainScreen.colNames[2] = textField_2.getText();
+					
+				}
+				
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					MainScreen.colNames[2] = textField_2.getText();
+					
+				}
+			});
 
 			textField_6 = new JTextField(MainScreen.des[2]);
 			textField_6.setColumns(10);
 			textField_6.setBounds(469, 278, 196, 172);
 			contentPane.add(textField_6);
 			
+			textField_6.getDocument().addDocumentListener(new DocumentListener() {
+				
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					MainScreen.des[2] = textField_6.getText();
+					
+				}
+				
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					MainScreen.des[2] = textField_6.getText();
+					
+				}
+				
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					MainScreen.des[2] = textField_6.getText();
+					
+				}
+			});
+			
 			textField_10 = new JTextField(MainScreen.dates[2]);
 			textField_10.setColumns(10);
 			textField_10.setBounds(521, 165, 128, 20);
 			contentPane.add(textField_10);
+			
+			textField_10.getDocument().addDocumentListener(new DocumentListener() {
+				
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					MainScreen.dates[2] = textField_10.getText();
+					
+				}
+				
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					MainScreen.dates[2] = textField_10.getText();
+					
+				}
+				
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					MainScreen.dates[2] = textField_10.getText();
+					
+				}
+			});
 		}
 		
 		if (MainScreen.columnCount >= 4) {
@@ -426,17 +616,80 @@ public class TaskBoardV2 extends JFrame {
 			textField_3.setColumns(10);
 			textField_3.setBounds(692, 205, 182, 20);
 			contentPane.add(textField_3);
+			
+			textField_3.getDocument().addDocumentListener(new DocumentListener() {
+				
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					MainScreen.colNames[3] = textField_3.getText();
+					
+				}
+				
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					MainScreen.colNames[3] = textField_3.getText();
+					
+				}
+				
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					MainScreen.colNames[3] = textField_3.getText();
+					
+				}
+			});
 
+			
 			textField_7 = new JTextField(MainScreen.des[3]);
 			textField_7.setColumns(10);
 			textField_7.setBounds(688, 278, 196, 172);
 			contentPane.add(textField_7);
+			
+			textField_7.getDocument().addDocumentListener(new DocumentListener() {
+				
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					MainScreen.des[3] = textField_7.getText();
+				}
+				
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					MainScreen.des[3] = textField_7.getText();
+					
+				}
+				
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					MainScreen.des[3] = textField_7.getText();
+					
+				}
+			});
 			
 			textField_11 = new JTextField(MainScreen.dates[3]);
 			textField_11.setColumns(10);
 			textField_11.setBounds(746, 165, 128, 20);
 			contentPane.add(textField_11);
 			textField.setColumns(10);
+			
+			textField_11.getDocument().addDocumentListener(new DocumentListener() {
+				
+				@Override
+				public void removeUpdate(DocumentEvent e) {
+					MainScreen.dates[3] = textField_11.getText();
+					
+				}
+				
+				@Override
+				public void insertUpdate(DocumentEvent e) {
+					MainScreen.dates[3] = textField_11.getText();
+					
+				}
+				
+				@Override
+				public void changedUpdate(DocumentEvent e) {
+					MainScreen.dates[3] = textField_11.getText();
+					
+				}
+			});
 
 		}
 		
