@@ -1,3 +1,5 @@
+package working.second;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 

@@ -1,3 +1,5 @@
+package working.second;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -18,18 +20,25 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import com.toedter.calendar.JDateChooser;
-import com.toedter.calendar.demo.DateChooserPanel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import com.toedter.calendar.JDateChooser;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
 
 public class TaskView extends JFrame {
 	private JTextField nameField;
-	private JTextField descriptionField;
+	public static JTextField descriptionField;
 	private ArrayList<String> [] Tasklist;
 	private JTextField textField;
+	private JDateChooser dateChooser;
+	
+	public static String getDes()
+	{
+		return descriptionField.getText();
+	}
 
 	/**
 	 * Create the frame.
@@ -50,20 +59,47 @@ public class TaskView extends JFrame {
 		descriptionField = new JTextField();
 		descriptionField.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		
-		JLabel lblStatus = new JLabel("Status");
-		
 		JLabel lblDueDate = new JLabel("Due Date");
 		
 		JButton btnNewButton = new JButton("Create");
+	
 		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
 			public void mouseClicked(MouseEvent arg0) {
-			}
-		});
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+				String newName = nameField.getText();
+				String newDes = descriptionField.getText();
+				String newDate = dateChooser.getDate().toString();
+				System.out.println();
+				if(TaskBoardV2.editChoice == 1)
+				{
+					MainScreen.colNames[0] = newName;
+					MainScreen.des[0] = newDes;
+					MainScreen.dates[0] = newDate; 
+				}
+				if(TaskBoardV2.editChoice == 2)
+				{
+					MainScreen.colNames[1] = newName;	
+					MainScreen.des[1] = newDes;
+					MainScreen.dates[1] = newDate; 
+				}
+				if(TaskBoardV2.editChoice == 3)
+				{
+					MainScreen.colNames[2] = newName;	
+					MainScreen.des[2] = newDes;
+					MainScreen.dates[2] = newDate; 
+				}
+				if(TaskBoardV2.editChoice == 4)
+				{
+					MainScreen.colNames[3] = newName;
+					MainScreen.des[3] = newDes;
+					MainScreen.dates[3] = newDate; 
+				}
+			
+				dispose();
+				TaskBoardV2 taskView = new TaskBoardV2();
+				taskView.setVisible(true);
+//				dispose();
+				
+				
 			}
 		});
 		
@@ -74,43 +110,42 @@ public class TaskView extends JFrame {
 			}
 		});
 		
+		dateChooser = new JDateChooser();
+		
 		textField = new JTextField();
 		textField.setColumns(10);
+		
+//		textField = new JTextField();
+//		textField.setColumns(10);
 
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(btnNewButton)
-							.addGap(18)
-							.addComponent(cancelButton)
-							.addGap(48))
-						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(lblStatus)
-										.addComponent(lblDueDate))
-									.addGap(40)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-										.addComponent(textField, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
-										.addComponent(comboBox, 0, 362, Short.MAX_VALUE)))
+									.addComponent(btnNewButton)
+									.addGap(18)
+									.addComponent(cancelButton))
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addComponent(lblDescription)
-										.addComponent(lblName))
+										.addComponent(lblName)
+										.addComponent(lblDueDate))
 									.addGap(29)
-									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-										.addComponent(nameField)
-										.addComponent(descriptionField, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))))
-							.addGap(57))))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(228)
-					.addComponent(lblTaskView)
-					.addContainerGap(236, Short.MAX_VALUE))
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+											.addComponent(nameField)
+											.addComponent(descriptionField, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))
+										.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)
+										.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(228)
+							.addComponent(lblTaskView)))
+					.addContainerGap(16, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -125,15 +160,13 @@ public class TaskView extends JFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblDescription)
 						.addComponent(descriptionField, GroupLayout.PREFERRED_SIZE, 115, GroupLayout.PREFERRED_SIZE))
-					.addGap(43)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblStatus)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(46)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+					.addGap(103)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblDueDate)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+						.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(32)
+					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
 						.addComponent(cancelButton))

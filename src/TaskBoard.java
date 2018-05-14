@@ -1,26 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+package working.second;
 
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -38,12 +16,14 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 class TaskBoard extends JFrame{
     private javax.swing.JComboBox<String> projectSelectorBox;
-    private int colsize= 4;
+    private int colsize= 4; //MainScreen.columnCount;
 	private JPanel[] columnPanels;
-	private String columns [] = {"Todo", "Abc", "java" , "qwrt"}  ;
+	public static String columns[] = MainScreen.colNames;
 	
 	public TaskBoard() {
 		getContentPane().setLayout(new BorderLayout());
@@ -55,7 +35,7 @@ class TaskBoard extends JFrame{
 		panel.add(projectName);
 		
 		JComboBox<String> projectSelector = new JComboBox<String>();
-		projectSelector.addItem("Item1 ");
+		projectSelector.addItem(MainScreen.projectName.getText());
 		panel.add(projectSelector);
 		
 		JButton btnEdit = new JButton("Edit");
@@ -74,12 +54,20 @@ class TaskBoard extends JFrame{
 		panel.add(btnLoad);
 		
 		JButton btnCreateNew = new JButton("Create New");
-		btnCreateNew.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ProjectView view = new ProjectView();
-				view.setVisible(true);
+		btnCreateNew.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				MainScreen mainScreen = new MainScreen();
+				mainScreen.setVisible(true);
 			}
 		});
+//		btnCreateNew.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				ProjectView view = new ProjectView();
+//				view.setVisible(true);
+//			}
+//		});
 		panel.add(btnCreateNew);
 		
 		JButton btnLogout = new JButton("Logout");
@@ -137,14 +125,15 @@ class TaskBoard extends JFrame{
 			});
 			columnPanels[i].add(jb);
 		}
-		int j = 0;
-		for (int i = 0; i < 4*colsize; i++) {
-			JLabel jb = new JLabel("Task " + i);
-			jb.setBorder(BorderFactory.createMatteBorder(0,2,0,2,Color.BLACK));
-
-			columnPanels[j].add(jb);
-			j = (j+1) % colsize;
-		}
+//		int j = 0;
+//		for (int i = 0; i < 4*colsize; i++) {
+//			JLabel jb = new JLabel("Task " + i);
+//			jb.setBorder(BorderFactory.createMatteBorder(0,2,0,2,Color.BLACK));
+//
+//			columnPanels[j].add(jb);
+//			j = (j+1) % colsize;
+//		}
+		
 
 
 		this.pack();
