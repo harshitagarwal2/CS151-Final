@@ -1,4 +1,4 @@
-package working.second;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -16,6 +16,7 @@ import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -33,6 +34,22 @@ public class MainScreen extends JFrame {
 	public static String[] dates = new String[4];
 	public static boolean cancel = true;
 	
+	
+	public void saveFile(String file) {
+		File f = new File(file);
+		BufferedWriter bf = null;
+		
+		try {
+			bf = new BufferedWriter(new FileWriter(f));
+			for(String s : colNames) {
+				System.out.println(s);
+				bf.write(s);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Launch the application.
@@ -167,7 +184,9 @@ public class MainScreen extends JFrame {
 				colNames[1] = textField_2.getText();
 				colNames[2] = textField_3.getText();
 				colNames[3] = textField_4.getText();
-				
+				for(String s : colNames) {
+					System.out.println(s);
+				}
 				cancel = false;
 				TaskBoardV2.noProj = false;
 				

@@ -1,4 +1,4 @@
-package working.second;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -32,7 +32,6 @@ public class TaskView extends JFrame {
 	private JTextField nameField;
 	public static JTextField descriptionField;
 	private ArrayList<String> [] Tasklist;
-	private JTextField textField;
 	private JDateChooser dateChooser;
 	
 	public static String getDes()
@@ -112,9 +111,6 @@ public class TaskView extends JFrame {
 		
 		dateChooser = new JDateChooser();
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		
 //		textField = new JTextField();
 //		textField.setColumns(10);
 
@@ -140,8 +136,7 @@ public class TaskView extends JFrame {
 										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 											.addComponent(nameField)
 											.addComponent(descriptionField, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE))
-										.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)
-										.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
+										.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, 193, GroupLayout.PREFERRED_SIZE)))))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(228)
 							.addComponent(lblTaskView)))
@@ -164,9 +159,7 @@ public class TaskView extends JFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblDueDate)
 						.addComponent(dateChooser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(32)
-					.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnNewButton)
 						.addComponent(cancelButton))

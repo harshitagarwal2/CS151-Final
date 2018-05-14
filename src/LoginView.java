@@ -1,4 +1,4 @@
-package working.second;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -77,26 +77,7 @@ public class LoginView extends JFrame {
 					{
 						MainScreen mainScreen = new MainScreen();
 						mainScreen.setVisible(true);
-						setVisible(false)
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						;
+						setVisible(false);
 					}
 			
 			}
