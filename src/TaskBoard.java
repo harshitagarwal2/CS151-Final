@@ -100,14 +100,14 @@ class TaskBoard extends JFrame{
                                                                 Color.BLACK));
 			label.setTransferHandler(new TransferHandler("text"));
 
-		    /*label.addMouseListener(new MouseAdapter() {
+		    label.addMouseListener(new MouseAdapter() {
 		      public void mousePressed(MouseEvent evt) {
 		        JComponent comp = (JComponent) evt.getSource();
 		        TransferHandler th = comp.getTransferHandler();
 
 		        th.exportAsDrag(comp, evt, TransferHandler.COPY);
 		      }
-		    });*/
+		    });
 			columnPanels[i].add(label);
 			
 		}
